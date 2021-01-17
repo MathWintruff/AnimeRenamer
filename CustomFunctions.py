@@ -6,22 +6,23 @@ class AnimeEpisode:
         self.finalName = str()
         self.seasonNumber = str()
         self.episodeNumber = str()
-        GetAditionalInfoByRawName(self)
+        self.GetAditionalInfoByRawName()
     
     def GetAditionalInfoByRawName(self):
         animeNameTreated = str()
         epNumUntreated = str()
         epNum = str()
         FinalReturn = list()
+        rawName = self.rawName
 
-        for index in range(self.rawName.count("[")):
-            bracketsPosition = [self.rawName.index("["), self.rawName.index("]")]
-            self.rawName = self.rawName[:bracketsPosition[0]] + self.rawName[bracketsPosition[1]+1:]
-        for index in range(self.rawName.count("(")):
-            bracketsPosition = [self.rawName.index("("), self.rawName.index(")")]
-            self.rawName = self.rawName[:bracketsPosition[0]] + self.rawName[bracketsPosition[1]+1:]
-            
-        animeNameTreated = animeNameTreated.join(self.rawName)
+        for index in range(rawName.count("[")):
+            bracketsPosition = [rawName.index("["), rawName.index("]")]
+            rawName = rawName[:bracketsPosition[0]] + rawName[bracketsPosition[1]+1:]
+        for index in range(rawName.count("(")):
+            bracketsPosition = [rawName.index("("), rawName.index(")")]
+            rawName = rawName[:bracketsPosition[0]] + rawName[bracketsPosition[1]+1:]
+
+        animeNameTreated = animeNameTreated.join(rawName)
         self.treatedName = animeNameTreated.strip()
 
         if " " in animeNameTreated:
