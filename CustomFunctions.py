@@ -31,9 +31,10 @@ class AnimeEpisode:
             animeNameTreated =  animeNameTreated.split("_")
 
         epNumUntreated = list(animeNameTreated[-1])
-        
-        for letter in epNumUntreated:
-            if letter in "0123456789":
-                epNum += letter
+
+        if 'E' in epNumUntreated:
+            epNum = epNum.join(epNumUntreated[epNumUntreated.index('E')+1:])
+        else:
+            epNum = epNum.join(epNumUntreated)
 
         self.episodeNumber = epNum

@@ -1,7 +1,7 @@
 from CustomFunctions import *
 import os
 
-
+"""
 allDirectoriesList = os.listdir('./Animes')
 seasonDirectory = list()
 animePath = list()
@@ -15,18 +15,16 @@ for dir in allDirectoriesList:
         for animePath in AllanimesPath:
             FileFormat = animePath.split('.')[-1]
             print(f'>>{animePath}  File Format: {FileFormat}')
-
+"""
     
 
 
 
 
 
-"""
+
 animeTest = AnimeEpisode("[AnimesTC] Re.Zero kara Hajimeru Isekai Seikatsu 2nd Season - 06 [1080p]")
 
 print(animeTest.rawName)
 print(animeTest.treatedName)
 print(animeTest.episodeNumber)
-
-"""
