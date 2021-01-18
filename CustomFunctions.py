@@ -1,30 +1,40 @@
 class AnimeEpisode:
     
-    def __init__(self, Name):
-        self.rawName = Name
-        self.treatedName = str()
-        self.finalName = str()
+    def __init__(self, rawName, seasonStr, animeName):
+        self.rawName = rawName
+        self.seasonStr = seasonStr
+        self.animeName = animeName
+        self.fileFormat = str()
         self.seasonNumber = str()
         self.episodeNumber = str()
-        self.GetAditionalInfoByRawName()
+        self.finalName = str()
+
+        self.GetAditionalInfo()
     
-    def GetAditionalInfoByRawName(self):
-        animeNameTreated = str()
+    def GetAditionalInfo(self):
+        #region Declarations
         epNumUntreated = str()
         epNum = str()
         FinalReturn = list()
         rawName = self.rawName
+        treatedName = str()
+        #endregion
 
-        for index in range(rawName.count("[")):
-            bracketsPosition = [rawName.index("["), rawName.index("]")]
-            rawName = rawName[:bracketsPosition[0]] + rawName[bracketsPosition[1]+1:]
-        for index in range(rawName.count("(")):
-            bracketsPosition = [rawName.index("("), rawName.index(")")]
-            rawName = rawName[:bracketsPosition[0]] + rawName[bracketsPosition[1]+1:]
-
-        animeNameTreated = animeNameTreated.join(rawName)
-        self.treatedName = animeNameTreated.strip()
-
+        #region Get File Format
+        rawName  = rawName.split(".")
+        self.fileFormat = rawName[-1]
+        #endregion
+        
+        #region Treating rawName
+        rawName  = " ".join(rawName[:-1])
+        for _ in range(rawName.count("[")):
+            rawName = rawName[:rawName.index("[")] + rawName[rawName.index("]")+1:]
+        for _ in range(rawName.count("(")):
+            rawName = rawName[:rawName.index("(")] + rawName[rawName.index(")")+1:]
+        animeNameTreated = str().join(rawName)
+        #endregion
+        
+        #region Get Episode Number
         if " " in animeNameTreated:
             animeNameTreated =  animeNameTreated.split()
         else:
@@ -38,3 +48,26 @@ class AnimeEpisode:
             epNum = epNum.join(epNumUntreated)
 
         self.episodeNumber = epNum
+        #endregion
+
+        #region Get Season Number
+        self.seasonNumber = self.seasonStr.split()[-1]
+
+        if int(self.seasonNumber) < 10:
+            self.seasonNumber = f"0{self.seasonNumber}"
+        #endregion
+
+        #region Make Final Name
+        self.finalName = f"{self.animeName} S{self.seasonNumber}E{self.episodeNumber}.{self.fileFormat}"
+        #endregion
+
+    def PrintAllInfo(self):
+        print("\n")
+        print(f"O RawName é: {self.rawName}")
+        print(f"O seasonStr é: {self.seasonStr}")
+        print(f"O animeName é: {self.animeName}")
+        print(f"O fileFormat é: {self.fileFormat}")
+        print(f"O seasonNumber é: {self.seasonNumber}")
+        print(f"O episodeNumber é: {self.episodeNumber}")
+        print(f"O finalName é: {self.finalName}")
+        print("\n")

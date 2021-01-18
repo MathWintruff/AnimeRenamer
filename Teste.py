@@ -1,10 +1,5 @@
-import os
+from CustomFunctions import *
 
-allDirectoriesList = os.listdir('.')
+animeTest = AnimeEpisode("[AnimesTC]kara Hajimeru 3nd Season - 02 [1080p].mkv", "Season 1", "Kara Hajimeru")
 
-for dir in allDirectoriesList:
-
-    if '.' in dir:
-        print(f'esse dir: {dir} nao e uma pasta')
-    else:
-        print(dir)
+animeTest.PrintAllInfo()
