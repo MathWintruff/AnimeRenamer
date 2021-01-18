@@ -33,6 +33,12 @@ class AnimeEpisodeClass:
         for _ in range(rawName.count("(")):
             rawName = rawName[:rawName.index("(")] + rawName[rawName.index(")")+1:]
         animeNameTreated = str().join(rawName)
+        if "END" in animeNameTreated:
+            animeNameTreated = animeNameTreated.replace("END", "")
+        elif "end" in animeNameTreated:
+            animeNameTreated = animeNameTreated.replace("end", "")
+        elif "End" in animeNameTreated:
+            animeNameTreated = animeNameTreated.replace("End", "")
         #endregion
         
         #region Get Episode Number
