@@ -1,9 +1,10 @@
-class AnimeEpisode:
+class AnimeEpisodeClass:
     
-    def __init__(self, rawName, seasonStr, animeName):
-        self.rawName = rawName
-        self.seasonStr = seasonStr
+    def __init__(self, animeName, seasonStr, rawName, episodePath):
         self.animeName = animeName
+        self.seasonStr = seasonStr
+        self.rawName = rawName
+        self.path = episodePath
         self.fileFormat = str()
         self.seasonNumber = str()
         self.episodeNumber = str()
