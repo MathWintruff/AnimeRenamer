@@ -71,6 +71,9 @@ class AnimeEpisodeClass:
             for char in epNum:
                 if char not in "0123456789":
                     epNum = epNum.replace(char, "")
+        
+        if epNum == "":
+            raise Exception("Can't find anime episode number")
 
         if "Ova" in self.seasonNumber:
             self.episodeNumber = epNum
