@@ -39,6 +39,9 @@ class AnimeEpisodeClass:
             animeNameTreated = animeNameTreated.replace("end", "")
         elif "End" in animeNameTreated:
             animeNameTreated = animeNameTreated.replace("End", "")
+        animeNameTreated = animeNameTreated.strip(" ")
+        animeNameTreated = animeNameTreated.strip("-")
+        animeNameTreated = animeNameTreated.strip("_")
         #endregion
         
         #region Get Season Number

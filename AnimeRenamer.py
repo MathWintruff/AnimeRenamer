@@ -8,6 +8,8 @@ seasonDir = list()
 AnimeEpisodesList = list()
 animeToRename = list()
 
+LogAnWarning("Starting the Script instance")
+
 try:
     for animeDir in allDirectoriesList:
         seasonDir = os.listdir(f'./Animes/{animeDir}')
@@ -20,4 +22,6 @@ try:
         os.rename(rf"{episode.path}{episode.rawName}",rf"{episode.path}{episode.finalName}")
         LogAnInfo(f"The anime:||> {episode.rawName} <|| Was renamed to:||> {episode.finalName} <||")
 except:
-    LogAnError(f"\nAn Error has occourred, the traceback of the error is:\n{traceback.format_exc()}\n")
+    LogAnError(f"An Error has occourred, the traceback of the error is:\n{traceback.format_exc()}")
+
+LogAnWarning("Finalizing the Script instance")
