@@ -1,0 +1,6 @@
+AnimeRenamer.spec
+Animes/
+Logs/
+__pycache__/
+build/
+dist/
