@@ -34,11 +34,11 @@ class AnimeEpisodeClass:
             rawName = rawName[:rawName.index("(")] + rawName[rawName.index(")")+1:]
         animeNameTreated = str().join(rawName)
 
-        for endType in ["END", "end", "End", "FINAL", "final", "Final"]:
+        for endType in ["END", "end", "End", "FINAL", "final", "Final", "MINI", "mini", "Mini"]:
             if endType in animeNameTreated:
                 animeNameTreated = animeNameTreated.replace(endType, "")
                 
-        for endSymbol in [" ", "-", "_"]:
+        for endSymbol in [" ", "-", "_", "."]:
             animeNameTreated = animeNameTreated.strip(endSymbol)
 
         #endregion
