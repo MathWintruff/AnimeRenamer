@@ -1,8 +1,19 @@
 import logging
+import os
+import traceback
 from datetime import datetime
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s -- %(message)s", datefmt="%Y-%m-%d|%H:%M:%S")
 logTime = datetime.now().strftime("%Y-%m-%d %H-%M-%S")
+
+try:
+    if "Logs" not in list(os.listdir('.')):
+        os.mkdir("Logs")
+        logsWasCreated = True
+    else:
+        logsWasCreated = False
+except:
+    LogAnError(f"An Error has occourred, the traceback of the error is:\n{traceback.format_exc()}")
 
 Filelogger = logging.getLogger("MainLogger")
 fileHandler = logging.FileHandler(f"./Logs/Log-{logTime}.log")
@@ -18,3 +29,6 @@ def LogAnWarning(WarningMessege):
 
 def LogAnError(errorMessege):
     Filelogger.error(errorMessege)
+
+if logsWasCreated:
+    LogAnWarning("Logs folder created")

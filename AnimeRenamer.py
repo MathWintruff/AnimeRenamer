@@ -3,12 +3,21 @@ from Logger import *
 import os
 import traceback
 
+try:
+    if "Animes" not in list(os.listdir('.')):
+        os.mkdir("Animes")
+        LogAnWarning("Animes folder created")
+except:
+    LogAnError(f"An Error has occourred, the traceback of the error is:\n{traceback.format_exc()}")
+
+
+
 allDirectoriesList = os.listdir('./Animes')
 seasonDir = list()
 AnimeEpisodesList = list()
 animeToRename = list()
 
-LogAnWarning("Starting the Script instance")
+LogAnWarning("Starting the Reanaming action")
 
 try:
     for animeDir in allDirectoriesList:
@@ -24,4 +33,4 @@ try:
 except:
     LogAnError(f"An Error has occourred, the traceback of the error is:\n{traceback.format_exc()}")
 
-LogAnWarning("Finalizing the Script instance")
+LogAnWarning("Finalizing the Reanaming action")
