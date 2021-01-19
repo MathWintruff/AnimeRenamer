@@ -1,4 +1,5 @@
 from CustomFunctions import *
+from Logger import *
 import os
 
 allDirectoriesList = os.listdir('./Animes')
@@ -15,3 +16,13 @@ for animeDir in allDirectoriesList:
 
 for episode in animeToRename:
     os.rename(rf"{episode.path}{episode.rawName}",rf"{episode.path}{episode.finalName}")
+    LogAnInfo(f"The anime:||> {episode.rawName} <|| Was renamed to:||> {episode.finalName} <||")
+
+"""
+import traceback
+
+try:
+    newString = str()
+except:
+    logger.error(traceback.format_exc())
+    """
