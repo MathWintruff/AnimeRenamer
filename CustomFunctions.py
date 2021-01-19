@@ -41,11 +41,23 @@ class AnimeEpisodeClass:
             animeNameTreated = animeNameTreated.replace("End", "")
         #endregion
         
+        #region Get Season Number
+        if "Ova" in self.seasonStr:
+            self.seasonNumber = "Ova"
+        else:
+            if int(self.seasonStr.split()[-1]) < 10:
+                self.seasonNumber = f"S0{self.seasonStr.split()[-1]}"
+            else:
+                self.seasonNumber = f"S{self.seasonStr.split()[-1]}"
+        #endregion
+
         #region Get Episode Number
         if " " in animeNameTreated:
             animeNameTreated =  animeNameTreated.split()
-        else:
+        elif "_" in animeNameTreated:
             animeNameTreated =  animeNameTreated.split("_")
+        elif "-" in animeNameTreated:
+            animeNameTreated =  animeNameTreated.split("-")
 
         epNumUntreated = list(animeNameTreated[-1])
 
@@ -53,28 +65,27 @@ class AnimeEpisodeClass:
             epNum = epNum.join(epNumUntreated[epNumUntreated.index('E')+1:])
         else:
             epNum = epNum.join(epNumUntreated)
+            for char in epNum:
+                if char not in "0123456789":
+                    epNum = epNum.replace(char, "")
 
-        self.episodeNumber = epNum
-        #endregion
-
-        #region Get Season Number
-        self.seasonNumber = self.seasonStr.split()[-1]
-
-        if int(self.seasonNumber) < 10:
-            self.seasonNumber = f"0{self.seasonNumber}"
+        if "Ova" in self.seasonNumber:
+            self.episodeNumber = epNum
+        else:
+            self.episodeNumber = f"E{epNum}"
         #endregion
 
         #region Make Final Name
-        self.finalName = f"{self.animeName} S{self.seasonNumber}E{self.episodeNumber}.{self.fileFormat}"
+        self.finalName = f"{self.animeName} {self.seasonNumber}{self.episodeNumber}.{self.fileFormat}"
         #endregion
 
     def PrintAllInfo(self):
         print("\n")
-        print(f"O RawName é: {self.rawName}")
-        print(f"O seasonStr é: {self.seasonStr}")
-        print(f"O animeName é: {self.animeName}")
-        print(f"O fileFormat é: {self.fileFormat}")
-        print(f"O seasonNumber é: {self.seasonNumber}")
-        print(f"O episodeNumber é: {self.episodeNumber}")
-        print(f"O finalName é: {self.finalName}")
+        print(f"the RawName is: {self.rawName}")
+        print(f"the animeName is: {self.animeName}")
+        print(f"the fileFormat is: {self.fileFormat}")
+        print(f"the seasonNumber is: {self.seasonNumber}")
+        print(f"the episodeNumber is: {self.episodeNumber}")
+        print(f"the seasonStr is: {self.seasonStr}")
+        print(f"the finalName is: {self.finalName}")
         print("\n")
