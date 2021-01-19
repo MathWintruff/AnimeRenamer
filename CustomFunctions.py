@@ -33,15 +33,14 @@ class AnimeEpisodeClass:
         for _ in range(rawName.count("(")):
             rawName = rawName[:rawName.index("(")] + rawName[rawName.index(")")+1:]
         animeNameTreated = str().join(rawName)
-        if "END" in animeNameTreated:
-            animeNameTreated = animeNameTreated.replace("END", "")
-        elif "end" in animeNameTreated:
-            animeNameTreated = animeNameTreated.replace("end", "")
-        elif "End" in animeNameTreated:
-            animeNameTreated = animeNameTreated.replace("End", "")
-        animeNameTreated = animeNameTreated.strip(" ")
-        animeNameTreated = animeNameTreated.strip("-")
-        animeNameTreated = animeNameTreated.strip("_")
+
+        for endType in ["END", "end", "End", "FINAL", "final", "Final"]:
+            if endType in animeNameTreated:
+                animeNameTreated = animeNameTreated.replace(endType, "")
+                
+        for endSymbol in [" ", "-", "_"]:
+            animeNameTreated = animeNameTreated.strip(endSymbol)
+
         #endregion
         
         #region Get Season Number
@@ -73,7 +72,7 @@ class AnimeEpisodeClass:
                     epNum = epNum.replace(char, "")
         
         if epNum == "":
-            raise Exception("Can't find anime episode number")
+            raise Exception(f"Can't find anime episode number in the anime: {self.rawName}")
 
         if "Ova" in self.seasonNumber:
             self.episodeNumber = epNum
