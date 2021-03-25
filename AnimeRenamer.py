@@ -2,6 +2,12 @@ from CustomFunctions import *
 from Logger import *
 import os
 import traceback
+from OtoPy.OtomaTools import *
+
+pb = OProgressBar(100)
+pb.PrintProgess(50)
+print()
+exit()
 
 try:
     if "Animes" not in list(os.listdir('.')):
