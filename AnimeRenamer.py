@@ -2,7 +2,7 @@ from AnimeEpisodeClass import *
 from OtoPy.UsefulTools import *
 import os
 
-Logger = OLogger(streamLoggin=False, fileLoggin=True)
+Logger = OLogger(streamLogging=False, fileLogging=True)
 bestLogo =[
  "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
  "@                                                                                                                 @",
